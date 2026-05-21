@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
-    IMAGE_NAME = "<DOCKERHUB_USERNAME>/webapp"
+    IMAGE_NAME = "faiza2003/webapp"
     IMAGE_TAG  = "${BUILD_NUMBER}"
     KUBECONFIG = "/var/lib/jenkins/.kube/config"
   }

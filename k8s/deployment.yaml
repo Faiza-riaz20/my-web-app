@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: <DOCKERHUB_USERNAME>/webapp:latest
+        image: faiza2003/webapp:latest
         ports:
         - containerPort: 3000
         env:
