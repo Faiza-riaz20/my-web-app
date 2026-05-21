@@ -22,20 +22,3 @@ spec:
         image: faiza2003/webapp:latest
         ports:
         - containerPort: 3000
-        env:
-        - name: DB_HOST
-          value: "mysql-service"
-        - name: DB_USER
-          value: "root"
-        - name: DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secret
-              key: password
-        resources:
-          requests:
-            memory: "128Mi"
-            cpu: "250m"
-          limits:
-            memory: "256Mi"
-            cpu: "500m"
