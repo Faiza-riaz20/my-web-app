@@ -1,7 +1,13 @@
 const express = require('express');
 const mysql = require('mysql2');
+const client = require('prom-client');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Prometheus metrics setup
+const collectDefaultMetrics = client.collectDefaultMetrics;
+collectDefaultMetrics();
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST || 'localhost',
@@ -15,6 +21,11 @@ app.get('/', (req, res) => {
 
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'UP', timestamp: new Date() });
+});
+
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', client.register.contentType);
+  res.end(await client.register.metrics());
 });
 
 app.listen(PORT, () => {
